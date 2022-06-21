@@ -1,5 +1,20 @@
-function App() {
-  return <h1>App</h1>;
-}
+import { useState } from "react";
+import { Header } from "./components/Header";
+import { TaskList } from "./components/TaskList";
+import { TaskSubmitForm, TaskTypes } from "./components/TaskSubmitForm";
 
-export default App;
+import styles from "./App.module.scss";
+
+export default function App() {
+  const [tasks, setTasks] = useState<TaskTypes[]>([]);
+
+  return (
+    <>
+      <Header />
+      <div className={styles.content}>
+        <TaskSubmitForm tasks={tasks} setTasks={setTasks} />
+        <TaskList tasks={tasks} setTasks={setTasks} />
+      </div>
+    </>
+  );
+}
